@@ -7,8 +7,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using TestingArea.DAL;
 using TestingArea.Models;
+using WebMatrix.WebData;
 
 namespace TestingArea.Controllers
 {
@@ -48,8 +50,9 @@ namespace TestingArea.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    int userID = WebSecurity.GetUserId(User.Identity.Name);
                     db.Providers.Add(provider);
-                    db.SaveChanges();
+                    db.SaveChanges(userID);
                     return RedirectToAction("Index");
                 }
             }
@@ -85,8 +88,9 @@ namespace TestingArea.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    int userID = WebSecurity.GetUserId(User.Identity.Name);
                     db.Entry(provider).State = EntityState.Modified;
-                    db.SaveChanges();
+                    db.SaveChanges(userID);
                     return RedirectToAction("Index");
                 }
             }
@@ -121,9 +125,10 @@ namespace TestingArea.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            int userID = WebSecurity.GetUserId(User.Identity.Name);
             Provider provider = db.Providers.Find(id);
             db.Providers.Remove(provider);
-            db.SaveChanges();
+            db.SaveChanges(userID);
             return RedirectToAction("Index");
         }
     }

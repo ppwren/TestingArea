@@ -199,6 +199,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AuditLog.cs" />
+    <Compile Include="Models\IDescribableEntity.cs" />
     <Compile Include="Models\Providers.cs" />
     <Compile Include="Models\Topics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

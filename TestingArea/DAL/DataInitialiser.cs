@@ -19,7 +19,7 @@ namespace TestingArea.DAL
             };
 
             providers.ForEach(p => context.Providers.Add(p));
-            context.SaveChanges();
+            context.SaveChanges(1);
 
             var topics = new List<Topic>
             {
@@ -31,7 +31,7 @@ namespace TestingArea.DAL
             };
 
             topics.ForEach(t => context.Topics.Add(t));
-            context.SaveChanges();
+            context.SaveChanges(1);
         }
     }
 }
